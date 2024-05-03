@@ -1,0 +1,77 @@
+####*****************************************************************
+### Ways you can feature engineer
+###******************************************************************
+
+Option1 
+    Convert datetime columns to extract
+        Year
+        Week of the Year
+        Month
+        Weekend
+        Hour
+        ......
+    df['datetimecolumn'].dt.Year
+
+Option 2
+    Aggregates
+    if say for example if customer id is involved
+    you can calculate
+        what month the customer is most active on 
+        What is count of other variables for a customer
+        what is the mean of num1 for a customer 
+        ........
+
+Option 3
+    aggregates based on statistical features such as 
+        mean
+        max
+        min
+        unique
+        Skew
+        kurtosis
+        Kstat
+        percentile
+        quantile
+        peak to peak
+        .....
+    research more on from tsfrash.feature_extraction import feature_calculators as fc 
+
+option 4
+    polunomial features of varying degree
+    a, b, ab, a2, b2, a**2b, etc.....
+
+option 5
+    binning - convert numbers to categories
+    something like histogram / freq by binning - Pandas cut function
+    df['f_bin_10'] = pd.cut(df['f_1],bins=10,labels=False)
+    Binning enables to read numerical features as categorical
+
+    Log transformation
+        feature with very high variance; reduce variance
+        e.g. if a column ranges from 0 - 10,000 then apply log(1+x) 
+        you can also take exponential
+        e.g. in RMSLE; you can train on log transformed targets and convert back to 
+             original using exponential on prediction; that would help you optimize the model for the metric
+
+
+Missing Values:
+    for categorical features, treat it as new category
+    for numerical data :- 
+        choose a value does not appear in the feature and fill; not most effective
+        Fill mean / median
+        Fancy way of filling in missing value - to use KNN
+        Another way is to predict missing column based on other columns; more robust 
+
+    Note:  imputing values for tree based model is unnecessary as they can hendle it themselves
+
+
+Always remember to scale & normalize your features if you are using linear models like regression / SVM
+Tree based models will always work fine without any normalization of features
+
+
+
+
+
+
+
+
