@@ -54,7 +54,6 @@ class UnivariateFeatureSelection:
 import pandas as pd
 import numpy as np
 from sklearn.datasets import fetch_california_housing
-from itertools import compress
 
 data = fetch_california_housing()
 X = data["data"]
