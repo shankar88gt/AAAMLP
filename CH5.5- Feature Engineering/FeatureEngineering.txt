@@ -68,6 +68,40 @@ Missing Values:
 Always remember to scale & normalize your features if you are using linear models like regression / SVM
 Tree based models will always work fine without any normalization of features
 
+"""
+Tips on Creating Features
+
+It's good to keep in mind your model's own strengths and weaknesses when creating features. 
+Here are some guidelines:
+1) Linear models learn sums and differences naturally, but can't learn anything more complex.
+2) Ratios seem to be difficult for most models to learn. Ratio combinations often lead to some easy performance gains.
+3) Linear models and neural nets generally do better with normalized features. 
+   Neural nets especially need features scaled to values not too far from 0. 
+   Tree-based models (like random forests and XGBoost) can sometimes benefit from normalization, 
+   but usually much less so.
+4) Tree models can learn to approximate almost any combination of features, but when a combination is especially 
+   important they can still benefit from having it explicitly created, especially when data is limited.
+5) Counts are especially helpful for tree models, since these models don't have a natural way of aggregating 
+    information across many features at once.
+
+Tips or Try out
+
+1) Mathematical Transformations
+2) Interaction with Categorical
+3) Counts Features
+4) Breakdown a categorical feature - e.g. One_Story_1946_and_Newer_All_Styles
+5) Group Transforms
+
+If you've discovered an interaction effect between a numeric feature and a categorical feature, 
+you might want to model it explicitly using a one-hot encoding, like so:
+
+# One-hot encode Categorical feature, adding a column prefix "Cat"
+X_new = pd.get_dummies(df.Categorical, prefix="Cat")
+# Multiply row-by-row
+X_new = X_new.mul(df.Continuous, axis=0)
+# Join the new features to the feature set
+X = X.join(X_new)
+"""
 
 
 
