@@ -8,8 +8,6 @@ from sklearn import model_selection
 from hyperopt import hp, fmin, tpe, Trials
 from hyperopt.pyll.base import scope
 
-from skopt import space
-
 def optimize(params, param_names,x ,y ):
     """
     The main optimization funtion. this function takes all the arguments from the search space
